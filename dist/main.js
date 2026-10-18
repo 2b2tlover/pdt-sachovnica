@@ -1,22 +1,19 @@
 "use strict";
-// Nájdeme kontajner pripravený v index.html.
-const sachovnica = document.getElementById("sachovnica");
 const velkost = 8;
-// Kontrola, že HTML kontajner existuje.
-if (sachovnica !== null) {
-    // Vonkajší cyklus prechádza riadky, vnútorný stĺpce.
-    for (let riadok = 0; riadok < velkost; riadok++) {
-        for (let stlpec = 0; stlpec < velkost; stlpec++) {
-            const policko = document.createElement("div");
-            policko.classList.add("policko");
-            // Párny a nepárny súčet strieda farby v oboch smeroch.
-            if ((riadok + stlpec) % 2 === 0) {
-                policko.classList.add("svetle");
-            }
-            else {
-                policko.classList.add("tmave");
-            }
-            sachovnica.appendChild(policko);
+let vysledok = "";
+for (let riadok = 0; riadok < velkost; riadok++) {
+    let text = "";
+    for (let stlpec = 0; stlpec < velkost; stlpec++) {
+        if ((riadok + stlpec) % 2 === 0) {
+            text = text + "■ ";
+        }
+        else {
+            text = text + "□ ";
         }
     }
+    vysledok = vysledok + text + "\n";
+}
+const sachovnica = document.getElementById("sachovnica");
+if (sachovnica !== null) {
+    sachovnica.textContent = vysledok;
 }
